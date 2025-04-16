@@ -9,11 +9,11 @@ __pycache__/
 .env
 *.env
 
-# # Virtual environment
-# venv/
-# env/
-# .venv/
-# .env/
+# Virtual environment
+venv/
+env/
+.venv/
+.env/
 
 # Django specific
 
