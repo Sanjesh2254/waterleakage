@@ -8,7 +8,8 @@ from .views import (
     create_complaint,
     update_complaint,
     delete_complaint,
-    receive_data
+    receive_data,
+    delete_all_leakage_data,
 )
 
 router = DefaultRouter()
@@ -22,5 +23,6 @@ urlpatterns = [
     path('issues/create/', create_complaint, name='create_complaint'),
     path('issues/<int:pk>/', update_complaint, name='update_complaint'),
     path('issues/<int:pk>/delete/', delete_complaint, name='delete_complaint'),
-    path('receive/',receive_data, name='receive_data')
+    path('receive/',receive_data, name='receive_data'),
+    path('api/delete-water-data/', delete_all_leakage_data),
 ]

@@ -4,7 +4,7 @@ from .models import water_leakage
 from .serializers import WaterLeakageSerializer
 
 class WaterLeakageViewSet(viewsets.ModelViewSet):
-    queryset = water_leakage.objects.all()
+    queryset = water_leakage.objects.all().order_by('-id')[:50]  # Fetch the last 10 records
     serializer_class = WaterLeakageSerializer
     filter_backends = [DjangoFilterBackend]
     filterset_fields = '__all__'
@@ -143,3 +143,18 @@ def get_recent_data(request, count):
     
     except Exception as e:
         return JsonResponse({"error": str(e)}, status=400)
+    
+
+
+
+
+
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework import status
+from .models import water_leakage
+
+@api_view(['DELETE'])
+def delete_all_leakage_data(request):
+    water_leakage.objects.all().delete()
+    return Response({"message": "All water leakage data deleted."}, status=status.HTTP_204_NO_CONTENT)
